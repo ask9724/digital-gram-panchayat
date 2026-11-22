@@ -54,7 +54,7 @@
  const today=new Date().toISOString().slice(0,10);
  $('inDate').value=today;$('outDate').value=today;
  const $=id=>document.getElementById(id);
- const loadFile=id=>new Promise(resolve=>{const f=$(id).files[0];if(!f)return resolve(null);if(f.size>5*1024*1024){alert('ફાઇલ 5 MB કરતાં નાની રાખો');return resolve(undefined)}const r=new FileReader();r.onload=()=>resolve({name:f.name,type:f.type,data:r.result});r.onerror=()=>resolve(undefined);r.readAsDataURL(f)});
+ const loadFile=id=>new Promise(resolve=>{const f=$(id).files[0];if(!f)return resolve(null);if(f.size>1*1024*1024){alert('ફાઇલ 1 MB કરતાં નાની રાખો');return resolve(undefined)}const r=new FileReader();r.onload=()=>resolve({name:f.name,type:f.type,data:r.result});r.onerror=()=>resolve(undefined);r.readAsDataURL(f)});
  const nextNo=(arr,prefix)=>prefix+String(arr.reduce((m,x)=>Math.max(m,Number(x.noSeq)||0),0)+1).padStart(4,'0');
  let inward=read('dgp_inward',[]),outward=read('dgp_outward',[]);
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
