@@ -4,11 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#145c45">
+<meta name="app-version" content="1.0.3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="style.css">
 <title>ડિજિટલ ગ્રામ પંચાયત</title>
 </head>
 <body>
+<div id="updateNotice" class="update-notice" hidden><div class="update-card"><h2>નવી અપડેટ ઉપલબ્ધ છે</h2><p id="updateMessage">ડિજિટલ ગ્રામ પંચાયતનું નવું વર્ઝન ઉપલબ્ધ છે.</p><button id="updateNow">હવે અપડેટ કરો</button><button id="updateLater" class="secondary">હમણાં નહીં</button></div></div>
 <div id="loginGate" class="login-gate"><form id="loginForm" class="login-card"><h2 id="loginTitle">ડિજિટલ ગ્રામ પંચાયત</h2><p id="loginMessage">લોગિન કરવા માટે વિગતો દાખલ કરો.</p><label>લોગિન ID<input id="loginId" autocomplete="username" required></label><label>૪ અંકનો પાસવર્ડ<input id="loginPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" required></label><p id="loginError" class="login-error"></p><button id="loginSubmit" type="submit">લોગિન કરો</button></form></div>
 <header><h1>ડિજિટલ ગ્રામ પંચાયત</h1><p>ગ્રામ પંચાયતના દસ્તાવેજો અને નોંધોનું સંચાલન</p></header>
 <nav>
@@ -60,4 +62,5 @@
 <script src="modules.js"></script>
 <script src="app.js"></script>
 <script src="audit.js"></script>
+<script src="update-check.js"></script>
 </body></html>
