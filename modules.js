@@ -63,11 +63,11 @@
  <label>વિષય<input id="resSubject"></label><label>દરખાસ્ત/ઠરાવ નંબર<input id="resNo"></label><label>વિગતો અને ચર્ચા<textarea id="resDetails" rows="4"></textarea></label><label>ઠરાવનો નિર્ણય<textarea id="resDecision" rows="4"></textarea></label>
  <button id="resGenerate">ઠરાવનો ડ્રાફ્ટ બનાવો</button><label>તૈયાર લખાણ<textarea id="resOutput" rows="12"></textarea></label><button id="resSave">દસ્તાવેજોમાં સાચવો</button>
  <h3>જૂના ઠરાવમાંથી જરૂરી ભાગની અલગ નકલ</h3><label>મૂળ લખાણ<textarea id="extractSource" rows="5"></textarea></label><label>અલગ નકલમાં રાખવાનો જરૂરી ભાગ<textarea id="extractPart" rows="4"></textarea></label><button id="extractSave">અલગ નકલ દસ્તાવેજોમાં સાચવો</button>`);
+ const $=id=>document.getElementById(id);
  const read=(k,d=[])=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
  const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
  const today=new Date().toISOString().slice(0,10);
  $('inDate').value=today;$('outDate').value=today;
- const $=id=>document.getElementById(id);
  const loadFile=id=>new Promise(resolve=>{const f=$(id).files[0];if(!f)return resolve(null);if(f.size>1*1024*1024){alert('ફાઇલ 1 MB કરતાં નાની રાખો');return resolve(undefined)}const r=new FileReader();r.onload=()=>resolve({name:f.name,type:f.type,data:r.result});r.onerror=()=>resolve(undefined);r.readAsDataURL(f)});
  const nextNo=(arr,prefix)=>prefix+String(arr.reduce((m,x)=>Math.max(m,Number(x.noSeq)||0),0)+1).padStart(4,'0');
  let inward=read('dgp_inward',[]),outward=read('dgp_outward',[]);
