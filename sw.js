@@ -1,5 +1,5 @@
-const CACHE='dgp-cache-v2';
-const FILES=['./','./index.html','./style.css','./app.js','./modules.js','./manifest.webmanifest'];
+const CACHE='dgp-cache-v3';
+const FILES=['./','./index.html','./style.css','./app.js','./modules.js','./audit.js','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('dgp-cache-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
