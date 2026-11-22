@@ -42,6 +42,20 @@
  <div id="outRows"></div>`;
  addTab('inward','આવક રજિસ્ટર',inwardHTML);
  addTab('outward','જાવક રજિસ્ટર',outwardHTML);
+ addTab('leave','રજા અહેવાલ',`
+ <h2>રજા અહેવાલ / રજા અરજી</h2>
+ <label>પ્રતિ<input id="leaveTo" value="તાલુકા વિકાસ અધિકારી, તાલુકા પંચાયત લુણાવાડા"></label>
+ <label>અરજદારનું નામ<input id="leaveName" value="એ. આર. સુથાર"></label>
+ <label>હોદ્દો<input id="leaveRole" value="તલાટી કમ મંત્રી"></label>
+ <label>ગ્રામ પંચાયત<input id="leaveGp" value="દલુખડિયા ગ્રુપ ગ્રામ પંચાયત"></label>
+ <label>રજાની તારીખ<input type="date" id="leaveDate"></label>
+ <label>રજાનો સમયગાળો<input id="leaveDuration" placeholder="એક દિવસ"></label>
+ <label>રજાનું કારણ<textarea id="leaveReason" rows="3" placeholder="રજાનું કારણ લખો"></textarea></label>
+ <button id="leaveGenerate">રજા અહેવાલ તૈયાર કરો</button>
+ <label>તૈયાર લખાણ<textarea id="leaveOutput" rows="10"></textarea></label>
+ <button id="leaveSave">દસ્તાવેજોમાં સાચવો</button>
+ <p class="hint">સહી માટે એપના “સહી” વિભાગમાં દોરેલી અથવા અપલોડ કરેલી સહીનો ઉપયોગ કરી શકો છો. આ ડ્રાફ્ટ છે; સત્તાવાર રીતે મોકલતા પહેલાં વિગતો તપાસો.</p>
+ `);
  addTab('resolutions','ઠરાવ તૈયાર કરો',`
  <h2>ગ્રામ પંચાયત ઠરાવ ડ્રાફ્ટ</h2><p class="hint">વિગતો ભરીને પ્રાથમિક ડ્રાફ્ટ બનાવો. સત્તાવાર ઉપયોગ પહેલાં અધિનિયમ/નિયમો મુજબ ચકાસણી કરવી.</p>
  <label>ગ્રામ પંચાયતનું નામ<input id="resGp" value="દલુખડિયા ગ્રુપ ગ્રામ પંચાયત"></label><label>તાલુકો અને જિલ્લો<input id="resPlace" value="તા. લુણાવાડા, જી. મહીસાગર"></label>
@@ -82,6 +96,10 @@
   outward.push(x);write('dgp_outward',outward);['outLetterNo','outTo','outAddress','outSubject','outType','outFile','outMode'].forEach(id=>$(id).value='');$('outDate').value=today;renderList('out');alert('જાવક નોંધ '+x.no+' સાચવાઈ');
  };
  const v=id=>$(id).value.trim();
+ $('leaveDate').value=today;
+ $('leaveGenerate').onclick=()=>{if(!v('leaveDate')||!v('leaveReason')||!v('leaveDuration')){alert('રજાની તારીખ, સમયગાળો અને કારણ લખો');return}const date=new Date(v('leaveDate')+'T00:00:00').toLocaleDateString('gu-IN');$('leaveOutput').value='પ્રતિ,\\n'+v('leaveTo')+'\\n\\nવિષય: રજા મંજૂર કરવા બાબત.\\n\\nસવિનય જણાવવાનું કે હું '+v('leaveGp')+' ખાતે '+v('leaveRole')+' તરીકે ફરજ બજાવું છું. અંગત/સામાજિક કારણોસર તા. '+date+' ના રોજ '+v('leaveDuration')+' ની રજા મંજૂર કરવા વિનંતી છે. રજાના સમયગાળા દરમિયાન જરૂરી કામગીરીની વ્યવસ્થા નિયમ મુજબ રાખવામાં આવશે.\\n\\nઆપશ્રી રજા મંજૂર કરશો તેવી વિનંતી.\\n\\nઆભાર.\\n\\nઆપનો વિશ્વાસુ,\\n'+v('leaveName')+'\\n'+v('leaveRole')+'\\n'+v('leaveGp')+'\\nતા. લુણાવાડા, જી. મહીસાગર\\nસહી: __________________'};
+ $('leaveSave').onclick=()=>{const val=$('leaveOutput').value.trim();if(!val){alert('પહેલાં રજા અહેવાલ તૈયાર કરો');return}const docs=read('dgp_docs',[]);docs.unshift({title:'રજા અહેવાલ — '+v('leaveDate'),body:val,date:new Date().toISOString()});write('dgp_docs',docs);alert('રજા અહેવાલ દસ્તાવેજોમાં સાચવાયો')};
+
  $('resGenerate').onclick=()=>{if(!v('resSubject')||!v('resDecision')){alert('વિષય અને ઠરાવનો નિર્ણય લખો');return}const date=v('resDate')?new Date(v('resDate')+'T00:00:00').toLocaleDateString('gu-IN'):'________';$('resOutput').value=v('resGp')+'\n'+v('resPlace')+'\n'+v('resMeeting')+' — તા. '+date+'\n\n'+v('resNo')+'\nવિષય: '+v('resSubject')+'\n\nચર્ચા/વિગતો: '+(v('resDetails')||'—')+'\n\nઠરાવ: '+v('resDecision')+'\n\nસર્વાનુમતે/બહુમતીથી ઠરાવ કરવામાં આવે છે.\n\nસરપંચની સહી: __________    તલાટી કમ મંત્રીની સહી: __________'};
  $('resSave').onclick=()=>{const val=$('resOutput').value.trim();if(!val){alert('પહેલાં ડ્રાફ્ટ બનાવો');return}const docs=read('dgp_docs',[]);docs.unshift({title:'ગ્રામ પંચાયત ઠરાવ — '+v('resSubject'),body:val,date:new Date().toISOString()});write('dgp_docs',docs);alert('ઠરાવ દસ્તાવેજોમાં સાચવાયો')};
  $('extractSave').onclick=()=>{const part=v('extractPart');if(!part){alert('અલગ નકલ માટેનો જરૂરી ભાગ લખો');return}const docs=read('dgp_docs',[]);docs.unshift({title:'જૂના ઠરાવમાંથી અલગ નકલ',body:part,date:new Date().toISOString()});write('dgp_docs',docs);alert('અલગ નકલ દસ્તાવેજોમાં સાચવાઈ')};
