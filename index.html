@@ -9,6 +9,7 @@
 <title>ડિજિટલ ગ્રામ પંચાયત</title>
 </head>
 <body>
+<div id="loginGate" class="login-gate"><form id="loginForm" class="login-card"><h2 id="loginTitle">ડિજિટલ ગ્રામ પંચાયત</h2><p id="loginMessage">લોગિન કરવા માટે વિગતો દાખલ કરો.</p><label>લોગિન ID<input id="loginId" autocomplete="username" required></label><label>૪ અંકનો પાસવર્ડ<input id="loginPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" required></label><p id="loginError" class="login-error"></p><button id="loginSubmit" type="submit">લોગિન કરો</button></form></div>
 <header><h1>ડિજિટલ ગ્રામ પંચાયત</h1><p>ગ્રામ પંચાયતના દસ્તાવેજો અને નોંધોનું સંચાલન</p></header>
 <nav>
 <button data-tab="home" class="active">મુખ્ય પૃષ્ઠ</button>
@@ -51,9 +52,11 @@
 <button id="exportData">બેકઅપ ડાઉનલોડ કરો</button>
 <label>બેકઅપ ફાઇલમાંથી ડેટા પાછો લાવો<input type="file" id="importData" accept="application/json"></label>
 <p id="backupStatus" class="hint"></p>
+<hr><h3>લોગિન ID અને પાસવર્ડ બદલો</h3><label>નવી લોગિન ID<input id="newLoginId" autocomplete="username" placeholder="તમારી પસંદગીની ID"></label><label>નવો ૪ અંકનો પાસવર્ડ<input id="newLoginPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="ચાર અંક"></label><label>હાલનો ૪ અંકનો પાસવર્ડ<input id="currentLoginPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="ચકાસણી માટે"></label><button id="changeLogin">લોગિન વિગતો બદલો</button><p id="loginChangeStatus" class="hint"></p>
 </section>
 </main>
 <footer>ડિજિટલ ગ્રામ પંચાયત • ઑફલાઇન ઉપયોગ માટે તૈયાર</footer>
+<script src="auth.js"></script>
 <script src="modules.js"></script>
 <script src="app.js"></script>
 <script src="audit.js"></script>
