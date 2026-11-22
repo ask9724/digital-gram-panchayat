@@ -1,1 +1,10 @@
-{"appId":"in.digitalgrampanchayat.app","appName":"ડિજિટલ ગ્રામ પંચાયત","webDir":"www","bundledWebRuntime":false}
+{
+  "appId": "in.digitalgrampanchayat.app",
+  "appName": "ડિજિટલ ગ્રામ પંચાયત",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://ask9724.github.io/digital-gram-panchayat/",
+    "cleartext": false
+  }
+}
