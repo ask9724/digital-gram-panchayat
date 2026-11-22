@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#145c45">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<title>ડિજિટલ ગ્રામ પંચાયત</title>
+</head>
+<body>
+<header><h1>ડિજિટલ ગ્રામ પંચાયત</h1><p>ગ્રામ પંચાયતના દસ્તાવેજો અને નોંધોનું સંચાલન</p></header>
+<nav>
+<button data-tab="home" class="active">મુખ્ય પૃષ્ઠ</button>
+<button data-tab="docs">દસ્તાવેજો</button>
+<button data-tab="notes">નોંધ</button>
+<button data-tab="signature">સહી</button>
+<button data-tab="backup">બેકઅપ</button>
+</nav>
+<main>
+<section id="home" class="tab show">
+<h2>સ્વાગત છે</h2>
+<p>આ એપમાં દસ્તાવેજોની વિગતો, ઠરાવો, નોંધો અને સહી સાચવી શકો છો.</p>
+<div class="stats"><div><b id="docCount">0</b><span>દસ્તાવેજો</span></div><div><b id="noteCount">0</b><span>નોંધો</span></div></div>
+</section>
+<section id="docs" class="tab">
+<h2>દસ્તાવેજો</h2>
+<label>દસ્તાવેજનું નામ<input id="docTitle" placeholder="દા.ત. સામાન્ય સભાનો ઠરાવ"></label>
+<label>વિગત<textarea id="docBody" rows="4" placeholder="અહીં લખો..."></textarea></label>
+<button id="saveDoc">દસ્તાવેજ સાચવો</button>
+<div id="docList"></div>
+</section>
+<section id="notes" class="tab">
+<h2>નોંધ</h2>
+<label>નોંધ લખો<textarea id="noteText" rows="4" placeholder="અહીં નોંધ લખો..."></textarea></label>
+<button id="saveNote">નોંધ સાચવો</button>
+<div id="noteList"></div>
+</section>
+<section id="signature" class="tab">
+<h2>સહી</h2>
+<p>આંગળી અથવા માઉસથી નીચે સહી દોરો અથવા સહીનો ફોટો પસંદ કરો.</p>
+<canvas id="signCanvas" width="700" height="220"></canvas>
+<div class="actions"><button id="clearSign" class="secondary">સાફ કરો</button><button id="saveSign">સહી સાચવો</button></div>
+<label>સહીનો ફોટો પસંદ કરો<input type="file" id="signImage" accept="image/*"></label>
+<img id="signPreview" alt="સહીનું પૂર્વદર્શન">
+<p class="hint">નોંધ: અહીં સાચવેલી સહીનું ચિત્ર પ્રમાણિત ડિજિટલ સહી (DSC) નથી.</p>
+</section>
+<section id="backup" class="tab">
+<h2>બેકઅપ અને પુનઃસ્થાપન</h2>
+<p>તમારો ડેટા આ બ્રાઉઝરમાં સાચવાય છે. સમયાંતરે બેકઅપ ડાઉનલોડ કરો.</p>
+<button id="exportData">બેકઅપ ડાઉનલોડ કરો</button>
+<label>બેકઅપ ફાઇલમાંથી ડેટા પાછો લાવો<input type="file" id="importData" accept="application/json"></label>
+<p id="backupStatus" class="hint"></p>
+</section>
+</main>
+<footer>ડિજિટલ ગ્રામ પંચાયત • ઑફલાઇન ઉપયોગ માટે તૈયાર</footer>
+<script src="app.js"></script>
+</body></html>

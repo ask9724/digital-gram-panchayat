@@ -1,0 +1,9 @@
+{
+  "name": "ડિજિટલ ગ્રામ પંચાયત",
+  "short_name": "ગ્રામ પંચાયત",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f4",
+  "theme_color": "#145c45",
+  "icons": []
+}
